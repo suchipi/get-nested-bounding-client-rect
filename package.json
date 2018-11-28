@@ -6,6 +6,13 @@
   "repository": "https://github.com/suchipi/get-nested-bounding-client-rect",
   "author": "Suchipi <me@suchipi.com>",
   "license": "MIT",
+  "keywords": [
+    "DOM",
+    "getBoundingClientRect",
+    "iframe",
+    "ClientRect",
+    "DOMRect"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
@@ -32,9 +39,11 @@
     "webpack-cli": "^3.1.2"
   },
   "scripts": {
-    "build": "rm -rf dist/* && babel src --out-dir dist && flow-copy-source src dist",
+    "build": "yarn build:lib && yarn build:test",
+    "build:lib": "rm -rf dist/* && babel src --out-dir dist && flow-copy-source src dist",
     "build:test": "yarn webpack --config test/webpack.config.js",
     "server": "http-server -p 3001 test/dist",
-    "test": "yarn build && yarn build:test && concurrently 'yarn server' 'yarn cypress run'"
+    "test": "yarn build && concurrently 'yarn server' 'yarn cypress run'",
+    "test:dev": "concurrently 'yarn build:test --watch' 'yarn server' 'yarn cypress open'"
   }
 }
