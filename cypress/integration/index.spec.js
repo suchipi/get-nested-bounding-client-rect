@@ -85,6 +85,18 @@ describe("get-nested-bounding-client-rect", () => {
         expect(nestedRedRect.bottom).to.equal(redRect.bottom);
       });
     });
+
+    it("x", () => {
+      cy.get("@data").then(({ redRect, nestedRedRect }) => {
+        expect(nestedRedRect.x).to.equal(redRect.x);
+      });
+    });
+
+    it("y", () => {
+      cy.get("@data").then(({ redRect, nestedRedRect }) => {
+        expect(nestedRedRect.y).to.equal(redRect.y);
+      });
+    });
   });
 
   describe("element nested one iframe deep (blue)", () => {
@@ -145,6 +157,30 @@ describe("get-nested-bounding-client-rect", () => {
               parseInt(blueFrameStyles.borderTop) +
               blueRect.top +
               blueRect.height
+          );
+        }
+      );
+    });
+
+    it("x", () => {
+      cy.get("@data").then(
+        ({ blueRect, nestedBlueRect, blueFrameRect, blueFrameStyles }) => {
+          expect(nestedBlueRect.x).to.equal(
+            blueFrameRect.left +
+              parseInt(blueFrameStyles.borderLeft) +
+              blueRect.left
+          );
+        }
+      );
+    });
+
+    it("y", () => {
+      cy.get("@data").then(
+        ({ blueRect, nestedBlueRect, blueFrameRect, blueFrameStyles }) => {
+          expect(nestedBlueRect.y).to.equal(
+            blueFrameRect.top +
+              parseInt(blueFrameStyles.borderTop) +
+              blueRect.top
           );
         }
       );
@@ -245,6 +281,48 @@ describe("get-nested-bounding-client-rect", () => {
               parseInt(greenFrameStyles.borderTop) +
               greenRect.top +
               greenRect.height
+          );
+        }
+      );
+    });
+
+    it("x", () => {
+      cy.get("@data").then(
+        ({
+          greenRect,
+          nestedGreenRect,
+          greenFrameRect,
+          greenFrameStyles,
+          blueFrameRect,
+          blueFrameStyles,
+        }) => {
+          expect(nestedGreenRect.x).to.equal(
+            blueFrameRect.left +
+              parseInt(blueFrameStyles.borderLeft) +
+              greenFrameRect.left +
+              parseInt(greenFrameStyles.borderLeft) +
+              greenRect.left
+          );
+        }
+      );
+    });
+
+    it("y", () => {
+      cy.get("@data").then(
+        ({
+          greenRect,
+          nestedGreenRect,
+          greenFrameRect,
+          greenFrameStyles,
+          blueFrameRect,
+          blueFrameStyles,
+        }) => {
+          expect(nestedGreenRect.y).to.equal(
+            blueFrameRect.top +
+              parseInt(blueFrameStyles.borderTop) +
+              greenFrameRect.top +
+              parseInt(greenFrameStyles.borderTop) +
+              greenRect.top
           );
         }
       );

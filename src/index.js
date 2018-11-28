@@ -6,6 +6,8 @@ export type DOMRect = {
   height: number,
   bottom: number,
   right: number,
+  x: number,
+  y: number,
 };
 
 function getElementDimensions(element: HTMLElement) {
@@ -65,6 +67,8 @@ function getBoundingClientRectWithBorderOffset(node: DOMNode) {
       // object typechecks as a DOMRect.
       width: 0,
       height: 0,
+      x: dimensions.borderLeft,
+      y: dimensions.borderTop,
     },
   ]);
 }
@@ -86,6 +90,8 @@ function mergeRectOffsets(rects: Array<DOMRect>): DOMRect {
       height: previousRect.height,
       bottom: nextTop + previousRect.height,
       right: nextLeft + previousRect.width,
+      x: nextLeft,
+      y: nextTop,
     };
   });
 }
