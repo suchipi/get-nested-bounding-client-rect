@@ -1,0 +1,10 @@
+.babelrc
+.eslintignore
+.eslintrc
+.prettierignore
+.prettierrc
+src
+test
+cypress
+cypress.json
+yarn.lock
